@@ -51,9 +51,11 @@ class _MyAppState extends State<MyApp> {
       //Um widget sempre retorna outr widget. Na nova versão do dart não precisa dar new
       //debugShowMaterialGrid: true, //apenas no modo de desenvolvimento
       theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.deepOrange, //usado para definir uma cor e a partir dela é definida as demais
-          accentColor: Colors.deepPurple),
+        brightness: Brightness.light,
+        primarySwatch: Colors.deepOrange, //usado para definir uma cor e a partir dela é definida as demais
+        accentColor: Colors.deepPurple,
+        buttonColor: Colors.deepPurple,
+      ),
       //home: AuthPage(),
       //aqui dentro do MaterialApp, o maior widget do sistema, vou definir todas as rotas para as páginas do sistema
       routes: {
@@ -85,8 +87,8 @@ class _MyAppState extends State<MyApp> {
       },
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(
-            builder: (BuildContext context) => 
-            ProductsPage(_products));
+          builder: (BuildContext context) => ProductsPage(_products)
+        );
       },
     );
   }

@@ -85,6 +85,9 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth =  MediaQuery.of(context).size.width;  //.orientation
+    final double targetWidth = deviceWidth > 768.0 ? 500.0 : deviceWidth * 0.95;  //se.. então.. se não..
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Login'),
@@ -97,19 +100,24 @@ class _AuthPageState extends State<AuthPage> {
         padding: EdgeInsets.all(10),
         child: Center(
           child: SingleChildScrollView(   //Era ListView - troquei para SingleChildScrollView para centralizar e ao subir o teclado empurrar widget
-            child: Column(children: <Widget>[
-              _buildEmailTextField(),
-              SizedBox(height: 10,),
-              _buildPasswordTextField(),
-              _buildAcceptSwitch(),
-              SizedBox(
-                height: 10,
+            child: Container(
+              width: targetWidth,   //vai ocupar 80% da tela 
+              child:Column(
+                children: <Widget>[
+                  _buildEmailTextField(),
+                  SizedBox(height: 10,),
+                  _buildPasswordTextField(),
+                  _buildAcceptSwitch(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  RaisedButton(
+                    child: Text('Login'),
+                    onPressed: _submitForm,     //não chama o métododo com (), passa só a referência para ele
+                  ),
+                ]
               ),
-              RaisedButton(
-                child: Text('Login'),
-                onPressed: _submitForm,     //não chama o métododo com (), passa só a referência para ele
-              ),
-            ]),
+            ),
           ),
         ),
       ),

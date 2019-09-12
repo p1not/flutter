@@ -77,35 +77,49 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   //é boa prática ter o mínimo de lógica no método build, por isso é chamado outros construtores dentro dele e não em seu corpo
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth =  MediaQuery.of(context).size.width;  //.orientation
+    final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.95;  //se.. então.. se não..
+    final double targetPadding = deviceWidth - targetWidth;
+    
     return Container(
-        margin: EdgeInsets.all(10.0),
-        child: ListView(
-          children: <Widget>[
-            _buildTitleTextField(),
-            _buildDescriptionTextField(),
-            _buildPriceTextField(),
-            SizedBox(
-              //sizedBox não redenriza nenhum conetúdo, ele só ocupa um espaço, para afastar o botão do TextField
-              height: 10,
-            ),
-            RaisedButton(
-              color: Theme.of(context).accentColor,
-              textColor: Colors.orangeAccent, //usando da classe colors, se eu mudar o thema esse botão não muda a cor
-              child: Text('Salvar'),
-              onPressed: _submitForm, //não chamar a função (), só apontar a referência
-              //   () {
-              //   final Map<String, dynamic> product = {
-              //     'title': _titleValue,
-              //     'description': _descriptionValue,
-              //     'price': _priceValue,
-              //     'image': 'assets/food.jpg'
-              //   };
-              //   widget.addProduct(product);
-              //   Navigator.pushReplacementNamed(context,
-              //       '/products'); //pushreplacement troca de página sem opção de voltar para a anterior
-              // },
-            )
-          ],
-        ));
+      width: targetWidth,
+      margin: EdgeInsets.all(10.0),
+      child: ListView(    //Os filhos do ListView por default ocupam sempre todo o espaço horizontal disponível da vertical
+        padding: EdgeInsets.symmetric(horizontal: targetPadding / 2),   //garanto q mesmo em modo paisagem não ocupa toda a largura
+        children: <Widget>[
+          _buildTitleTextField(),
+          _buildDescriptionTextField(),
+          _buildPriceTextField(),
+          SizedBox(
+            //sizedBox não redenriza nenhum conetúdo, ele só ocupa um espaço, para afastar o botão do TextField
+            height: 10,
+          ),
+          // GestureDetector(      //funciona como um listener 
+          //   onTap: _submitForm,    //há vários tipos de comandos para escutar
+          //   child: Container(
+          //     padding: EdgeInsets.all(5),
+          //     color: Colors.green,
+          //     child: Text("Botão Customizado"),
+          //   ),
+          // ),
+          RaisedButton(
+            textColor: Colors.orangeAccent, //Aida não é possível mudar a cor do botão pelo thema, só direto no botão
+            child: Text('Salvar'),
+            onPressed: _submitForm, //não chamar a função (), só apontar a referência
+            //   () {
+            //   final Map<String, dynamic> product = {
+            //     'title': _titleValue,
+            //     'description': _descriptionValue,
+            //     'price': _priceValue,
+            //     'image': 'assets/food.jpg'
+            //   };
+            //   widget.addProduct(product);
+            //   Navigator.pushReplacementNamed(context,
+            //       '/products'); //pushreplacement troca de página sem opção de voltar para a anterior
+            // },
+          )
+        ],
+      )
+    );
   }
 }
