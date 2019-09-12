@@ -24,7 +24,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   double _priceValue = 0.0;
 
   Widget _buildTitleTextField() {
-    TextField(
+    return TextField(
       maxLines: 3,
       decoration: InputDecoration(labelText: 'Descrição do Produto'),
       onChanged: (String value) {
@@ -37,7 +37,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   }
 
   Widget _buildDescriptionTextField() {
-    TextField(
+    return TextField(
       textCapitalization:
           TextCapitalization.sentences, //coloca as primeiras letras maiúsculas
       decoration: InputDecoration(labelText: 'Titulo do Produto'),
@@ -50,7 +50,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   }
 
   Widget _buildPriceTextField() {
-    TextField(
+    return TextField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(labelText: 'Valor do Produto'),
       onChanged: (String value) {

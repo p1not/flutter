@@ -10,12 +10,8 @@ class ProductsAdminPage extends StatelessWidget {
 
   const ProductsAdminPage(this.addProduct, this.deleteProduct);
 
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 2,      //quantas abas vão ter
-        child: Scaffold(
-          drawer: Drawer(
+  Widget _buildSideDrawer(BuildContext context){
+    return Drawer(
             //menu lateral
             child: Column(
               children: <Widget>[
@@ -30,7 +26,15 @@ class ProductsAdminPage extends StatelessWidget {
                 )
               ],
             ),
-          ),
+          );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+        length: 2,      //quantas abas vão ter
+        child: Scaffold(
+          drawer: _buildSideDrawer(context),
       appBar: AppBar(
         title: Text('Gerenciamento de Produtos'),
         bottom: TabBar(

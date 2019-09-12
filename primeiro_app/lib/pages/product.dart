@@ -38,8 +38,50 @@ class ProductPage extends StatelessWidget {
         });
   }
   */
+
+  Widget _buildAddressPriceRow(BuildContext context){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Container(
+          child: TitleDefault(title)
+          // Text(
+          //   title,
+          //   style: TextStyle(
+          //     fontSize: 26.0,
+          //     fontWeight: FontWeight.bold,
+          //     fontFamily:'Oswald'         //oswald é uma fonte importada na pubspec.yaml
+          //   ),
+          // ),
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2.5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey, width: 1.0),
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          child: Text('Rio de Janeiro, RJ')
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2.5),
+          decoration: BoxDecoration(
+            color: Theme.of(context).accentColor,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Text(
+            //o ${} diz ao dart que vou concatenar uma string com essa. Se não a string a concaternar n for um caracter reservado posso optar pelo +
+            //como o $ é reservado, tenho de usar o \$ para exibir só $
+            'valor: R\$ '+price.toString(), //tem que converter poque é double
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ],
+    );
+  }
+
+
   
-  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
@@ -62,45 +104,7 @@ class ProductPage extends StatelessWidget {
                Container(
                  margin: EdgeInsets.only(top: 8, bottom: 2),
                  color: Colors.red,
-                 child: 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Container(
-                      child: TitleDefault(title)
-                      // Text(
-                      //   title,
-                      //   style: TextStyle(
-                      //     fontSize: 26.0,
-                      //     fontWeight: FontWeight.bold,
-                      //     fontFamily:'Oswald'         //oswald é uma fonte importada na pubspec.yaml
-                      //   ),
-                      // ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2.5),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey, width: 1.0),
-                        borderRadius: BorderRadius.circular(6.0),
-                      ),
-                      child: Text('Rio de Janeiro, RJ')
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2.5),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Text(
-                        //o ${} diz ao dart que vou concatenar uma string com essa. Se não a string a concaternar n for um caracter reservado posso optar pelo +
-                        //como o $ é reservado, tenho de usar o \$ para exibir só $
-                        'valor: R\$ '+price.toString(), //tem que converter poque é double
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
+                 child: _buildAddressPriceRow(context),
               ),
               // Container(
               //   padding: EdgeInsets.all(10),
@@ -110,7 +114,6 @@ class ProductPage extends StatelessWidget {
               //     onPressed: () => _showWarningDialog(context)    //função anonima pois quero q seja executada na hora
               //   ),
               // ),
-              
               Container(
                 margin: EdgeInsets.only(top: 8, bottom: 2),
                 color: Colors.red[100],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/product_manager.dart';
+//import 'package:primeiro_app/product_manager.dart';
 import 'package:primeiro_app/widgets/products/products.dart';
 
 
@@ -8,10 +8,8 @@ class ProductsPage extends StatelessWidget {
 
   ProductsPage(this.products);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(        //Scaffold é quem chama uma nova página
-      drawer: Drawer(         //menu lateral
+  Widget _buildSideDrawer(BuildContext context){
+    return Drawer(         //menu lateral
         child: Column(
           children: <Widget>[
             AppBar(
@@ -25,7 +23,13 @@ class ProductsPage extends StatelessWidget {
             )
           ],
         ),
-      ),
+      );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(        //Scaffold é quem chama uma nova página
+      drawer: _buildSideDrawer(context),
       appBar: AppBar(
         title: Text('EasyList'),
         actions: <Widget>[
